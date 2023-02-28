@@ -6,7 +6,7 @@ const Footer = () => {
 
 
     return (
-        <div className='mt-4'
+        <div data-aos="zoom-in-down" className='mt-4'
             style={{
                 background: `url(${bg})`,
                 backgroundSize: 'cover'

@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import Loading from '../Loading/Loading';
 
 const AllUsers = () => {
-    const { data: users = [] , refetch} = useQuery({
+    const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users');
+            const res = await fetch('https://doctores-protal-server.vercel.app/users');
             const data = await res.json()
             return data;
         }
@@ -15,19 +16,44 @@ const AllUsers = () => {
 
 
     const handleAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://doctores-protal-server.vercel.app/users/admin/${id}`, {
             method: 'PUT',
-            headers:{
-               authorization: `bearer ${localStorage.getItem('accessToken')}`
-            } 
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
-               if(data.modifiedCount > 0){
-                    toast.success('Make admin successful')
+                if (data.modifiedCount > 0) {
                     refetch()
-               }
+                    toast.success('Make admin successful')
+                }
             })
+    }
+
+
+
+
+    const handleDelete = (user) => {
+
+        fetch(`https://doctores-protal-server.vercel.app/user/${user?._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch();
+                toast.success(`Delete user ${user.name}`)
+            })
+    }
+
+    if (isLoading) {
+        return <Loading></Loading>
     }
 
     return (
@@ -53,8 +79,8 @@ const AllUsers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>{user?.role !== 'admin' && <button onClick={() => handleAdmin(user._id)} className="btn btn-info text-white">Make Admin</button>}</td>
-                                <td><button className="btn btn-ghost">Delete</button></td>
+                                <td>{user?.role !== 'admin' && <button onClick={() => handleAdmin(user._id)} className="btn btn-info btn-sm text-white">Make Admin</button>}</td>
+                                <td><button onClick={() => handleDelete(user)} className="btn btn-ghost bg-error btn-sm">Delete</button></td>
                             </tr>)
                         }
 

@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading';
 const MyAppointment = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `https://doctores-protal-server.vercel.app/bookings?email=${user?.email}`;
 
     const { data: bookings = [] , isLoading} = useQuery({
         queryKey: ['bookings', user?.email],

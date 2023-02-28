@@ -3,7 +3,7 @@ import React from 'react';
 const Reviews = ({ data }) => {
     const { name, img, details, location } = data;
     return (
-        <div>
+        <div data-aos="zoom-in-down" >
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <p>{details}</p>

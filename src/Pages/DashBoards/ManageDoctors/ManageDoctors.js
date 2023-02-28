@@ -14,7 +14,7 @@ const ManageDoctors = () => {
     const { data: doctors, isLoading, refetch } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/doctors', {
+            const res = await fetch('https://doctores-protal-server.vercel.app/doctors', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
 
@@ -28,7 +28,7 @@ const ManageDoctors = () => {
 
     const handleDelete = doctors => {
 
-        fetch(`http://localhost:5000/doctors/${doctors._id}`, {
+        fetch(`https://doctores-protal-server.vercel.app/doctors/${doctors._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

@@ -29,7 +29,7 @@ const BookModel = ({ treatment, selectedDate, setTreatment ,  refetch}) => {
 
         }
         console.log(booking);
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://doctores-protal-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

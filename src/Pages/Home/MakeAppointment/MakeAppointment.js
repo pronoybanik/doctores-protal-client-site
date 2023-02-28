@@ -5,13 +5,13 @@ import Buttons from '../../../component/Buttons/Buttons';
 
 const MakeAppointment = () => {
     return (
-        <section className='mt-64'
+        <section data-aos="zoom-in-down" className='mt-64'
           style={{ 
             background: `url(${img1})`
         }}
         >
 
-            <div className="hero">
+            <div className="hero" >
                 <div className="hero-content flex-col lg:flex-row">
                     <img src={img} className="-mt-32 hidden md:block   max-w-sm rounded-lg shadow-2xl" />
                     <div className='ml-4 text-white'>

@@ -4,7 +4,7 @@ import Buttons from '../../../component/Buttons/Buttons';
 
 const DentalCard = () => {
     return (
-        <div className='my-28'>
+        <div className='my-28' data-aos="zoom-in-down">
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row">
                     <img src={img} className=" lg:max-w-sm rounded-lg shadow-2xl "  />

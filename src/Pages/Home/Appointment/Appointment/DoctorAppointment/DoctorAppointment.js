@@ -3,7 +3,7 @@ import React from 'react';
 const DoctorAppointment = ({ appointmentOption, setTreatment }) => {
     const { name, slots, price } = appointmentOption;
     return (
-        <div>
+        <div data-aos="zoom-in-down">
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="text-2xl font-bold text-primary text-center">{name}</h2>

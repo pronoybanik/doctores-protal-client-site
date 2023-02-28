@@ -12,7 +12,7 @@ const AvailableAppointment = ({ selectedDate }) => {
     const { data: appointmentOptions = [] , refetch, isLoading} = useQuery({
         queryKey: ['appointmentOptions', date ],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/appointmentOptions?date=${date}`);
+            const res = await fetch(`https://doctores-protal-server.vercel.app/appointmentOptions?date=${date}`);
             const data = await res.json();
             return data;
         }
@@ -22,13 +22,7 @@ const AvailableAppointment = ({ selectedDate }) => {
         return <Loading></Loading>
     }
 
-    // useEffect(() => {
-    //     fetch('')
-    //         .then(res => res.json())
-    //         .then(data => setAppointmentOptions(data))
-
-    // }, []);
-
+ 
     return (
         <div>
             <h2 className='text-center mt-6 font-bold text-primary'>

@@ -8,13 +8,14 @@ import Loading from '../../../Pages/Loading/Loading'
 const AddDoctors = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const imageHostKey = process.env.REACT_APP_imgbb_key;
-const navigate = useNavigate()
- 
+    // const imageHostKey = process.env.REACT_APP_imgbb_key;
+
+    const navigate = useNavigate()
+
     const { data: specialties, isLoading } = useQuery({
         queryKey: ['specialties'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/appointmentSpecialty')
+            const res = await fetch('https://doctores-protal-server.vercel.app/appointmentSpecialty')
             const data = await res.json();
             return data
         }
@@ -22,21 +23,19 @@ const navigate = useNavigate()
     })
 
     const handleAddDoctors = data => {
-        // console.log(data.img[0]);
-        const image = data.img[0]
-        // console.log(image);
-
+        const imageData = data.image[0];
         const formData = new FormData();
-        formData.append('image', image);
-        // console.log(formData);
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        formData.append('image', imageData);
+
+        const url = 'https://api.imgbb.com/1/upload?key=99f58a547dc4b1d269148eb1b605ef29'
         fetch(url, {
             method: 'POST',
             body: formData
+
         })
             .then(res => res.json())
             .then(imgData => {
-                // console.log(imgData);
+                console.log(imgData);
                 if (imgData.success) {
                     console.log(imgData.data.url);
                     const doctor = {
@@ -47,7 +46,7 @@ const navigate = useNavigate()
                     }
 
                     // save doctors  api syetem
-                    fetch('http://localhost:5000/doctors', {
+                    fetch('https://doctores-protal-server.vercel.app/doctors', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -57,12 +56,12 @@ const navigate = useNavigate()
                         body: JSON.stringify(doctor)
 
                     })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data)
-                        toast.success(`${data.name} is added success`)
-                        navigate('/dashboard/managedoctors')
-                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            toast.success(`${data.name} is added success`)
+                            navigate('/dashboard/managedoctors')
+                        })
                 }
             })
     }
@@ -125,7 +124,7 @@ const navigate = useNavigate()
                     <label className="label">
                         <span className="label-text">photo</span>
                     </label>
-                    <input type="file"  {...register("img", {
+                    <input type="file"  {...register("image", {
                         required: 'photo is required',
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.img && <p className='text-red-800'>{errors.img?.message}</p>}

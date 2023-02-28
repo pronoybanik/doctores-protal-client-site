@@ -4,7 +4,7 @@ import Buttons from '../../../component/Buttons/Buttons';
 
 const EmailField = () => {
     return (
-        <section className='mt-20 py-12'
+        <section data-aos="zoom-in-down" className='mt-20 py-12'
             style={{
                 background: `url(${img})`
             }}

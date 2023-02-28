@@ -13,26 +13,30 @@ const NevBar = () => {
     }
 
     const menuItems = <React.Fragment>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/appointment'>Appointment</Link></li>
-        <li><Link to='/about'>About</Link></li>
-        <li><Link to='/dashboard'> DashBoard </Link></li>
+        <li><Link  className="btn btn-ghost btn-sm mt-2 ml-2" to='/'>Home</Link></li>
+        <li><Link  className="btn btn-ghost btn-sm mt-2 ml-2" to='/appointment'>Appointment</Link></li>
+        {/* <li><Link to='/about'>About</Link></li> */}
 
         <>
             {
                 user?.uid ?
                     <>
-                        <li><button onClick={handleLogOut} to='/logout'>Sign out</button></li>
+                        <li><Link className="btn btn-ghost btn-sm mt-2 ml-2" to='/dashboard'> DashBoard </Link></li>
+                        <li><button className="btn btn-ghost btn-sm mt-2 ml-2" onClick={handleLogOut} to='/logout'>Sign out</button></li>
                     </>
                     :
-                    <li><Link to='/login'>Sign In</Link></li>
+                    <li><Link className="btn btn-ghost btn-sm mt-2 ml-2" to='/login'>Sign In</Link></li>
             }
         </>
     </React.Fragment>
 
+    // email: pronoybanik82@gmail.com
+    // pass: aA@123
+    // hosting: https://doctors-protal-c7857.web.app/
+
     return (
-        <div>
-            <div className="navbar bg-base-100 flex justify-between">
+        <div className='sticky top-0 z-50'>
+            <div className="navbar bg-base-100 flex justify-between ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -44,9 +48,9 @@ const NevBar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">Doctors Portal</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-2xl">Doctors<p className='ml-2 text-amber-600'>.Portal</p></Link>
                 </div>
-                
+
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
                         {
